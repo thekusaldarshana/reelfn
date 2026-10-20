@@ -1,0 +1,356 @@
+{
+  "schemaVersion": 2,
+  "slug": "time-complexity-loops",
+  "language": "en",
+  "audience": "Curious general viewers, including interested teens and beginner programmers",
+  "subject": "computer-science",
+  "question": "Why can checking one billion items for duplicates take about 79 years or 10 seconds in an illustrative operation model?",
+  "payoff": "Comparing every unordered pair grows quadratically; scanning with a set uses two modeled operations per item when there are no duplicates, subject to average-case hash behavior.",
+  "conceptReveal": {
+    "name": "time complexity",
+    "beatId": "reveal"
+  },
+  "brandVersion": "1",
+  "templateVersion": "code-growth-1",
+  "durationSeconds": 64,
+  "evidence": [
+    {
+      "id": "python-big-o",
+      "title": "TimeComplexity - Python Wiki",
+      "publisher": "Python Software Foundation",
+      "url": "https://wiki.python.org/moin/TimeComplexity",
+      "accessedAt": "2026-10-14",
+      "locator": "Time Complexity introduction, first paragraph",
+      "passage": "This page documents the time-complexity (aka \"Big O\" or \"Big Oh\") of various operations in current CPython."
+    },
+    {
+      "id": "python-set-membership",
+      "title": "TimeComplexity - Python Wiki",
+      "publisher": "Python Software Foundation",
+      "url": "https://wiki.python.org/moin/TimeComplexity",
+      "accessedAt": "2026-10-14",
+      "locator": "set table, “x in s” row; cells in Operation / Average case / Worst Case order",
+      "passage": "x in s\nO(1)\nO(n)"
+    },
+    {
+      "id": "python-dict-insertion",
+      "title": "TimeComplexity - Python Wiki",
+      "publisher": "Python Software Foundation",
+      "url": "https://wiki.python.org/moin/TimeComplexity",
+      "accessedAt": "2026-10-14",
+      "locator": "dict table, “Set Item[1]” row; cells in Operation / Average Case / Amortized Worst Case order",
+      "passage": "Set Item[1]\nO(1)\nO(n)"
+    },
+    {
+      "id": "python-set-implementation",
+      "title": "TimeComplexity - Python Wiki",
+      "publisher": "Python Software Foundation",
+      "url": "https://wiki.python.org/moin/TimeComplexity",
+      "accessedAt": "2026-10-14",
+      "locator": "set section, introductory sentence",
+      "passage": "See dict -- the implementation is intentionally very similar."
+    }
+  ],
+  "claims": [
+    {
+      "id": "thousand-pairs",
+      "text": "At 1,000 distinct items, duplicate detection compares 499,500 unordered pairs.",
+      "kind": "derived",
+      "evidenceIds": [],
+      "assumptions": [
+        "No duplicate exists, so the algorithm runs to completion.",
+        "Each unordered pair is compared once."
+      ],
+      "limitations": [
+        "Counts abstract operations; operations have unequal real costs."
+      ],
+      "check": {
+        "type": "operation-count",
+        "n": 1000,
+        "growth": "pairs",
+        "steps": 499500
+      }
+    },
+    {
+      "id": "thousand-set",
+      "text": "At 1,000 distinct items, the set scan models 2,000 membership and insertion operations.",
+      "kind": "derived",
+      "evidenceIds": [],
+      "assumptions": [
+        "No duplicate exists, so the algorithm runs to completion.",
+        "Model one set membership test and one set insertion for each item."
+      ],
+      "limitations": [
+        "Counts abstract operations; operations have unequal real costs."
+      ],
+      "check": {
+        "type": "operation-count",
+        "n": 1000,
+        "growth": "set-scan",
+        "steps": 2000
+      }
+    },
+    {
+      "id": "ten-thousand-pairs",
+      "text": "At 10,000 distinct items, pairwise duplicate detection compares 49,995,000 pairs.",
+      "kind": "derived",
+      "evidenceIds": [],
+      "assumptions": [
+        "No duplicate exists, so the algorithm runs to completion.",
+        "Each unordered pair is compared once."
+      ],
+      "limitations": [
+        "Counts abstract operations; operations have unequal real costs."
+      ],
+      "check": {
+        "type": "operation-count",
+        "n": 10000,
+        "growth": "pairs",
+        "steps": 49995000
+      }
+    },
+    {
+      "id": "ten-thousand-set",
+      "text": "At 10,000 distinct items, the set scan models 20,000 operations.",
+      "kind": "derived",
+      "evidenceIds": [],
+      "assumptions": [
+        "No duplicate exists, so the algorithm runs to completion.",
+        "Model one set membership test and one set insertion for each item."
+      ],
+      "limitations": [
+        "Counts abstract operations; operations have unequal real costs."
+      ],
+      "check": {
+        "type": "operation-count",
+        "n": 10000,
+        "growth": "set-scan",
+        "steps": 20000
+      }
+    },
+    {
+      "id": "big-o-name",
+      "text": "Big O describes how operation count grows with input size.",
+      "kind": "sourced",
+      "evidenceIds": [
+        "python-big-o"
+      ],
+      "assumptions": [
+        "Asymptotic growth is about counts, not measured seconds."
+      ],
+      "limitations": [
+        "Big O hides constant factors and hardware effects."
+      ]
+    },
+    {
+      "id": "million-pairs",
+      "text": "At a hypothetical 200 million comparisons/s, 1,000,000 distinct items take about 42 minutes by pairwise comparison.",
+      "kind": "derived",
+      "evidenceIds": [],
+      "assumptions": [
+        "No duplicate exists, so the algorithm runs to completion.",
+        "Each unordered pair is compared once."
+      ],
+      "limitations": [
+        "Counts abstract operations; operations have unequal real costs.",
+        "The 200 million operations/s rate is a hypothetical illustration, not a benchmark."
+      ],
+      "check": {
+        "type": "operation-count",
+        "n": 1000000,
+        "growth": "pairs",
+        "steps": 499999500000,
+        "stepsPerSecond": 200000000,
+        "seconds": 2499.9975
+      }
+    },
+    {
+      "id": "million-set",
+      "text": "At the same hypothetical rate, a set scan models 10 milliseconds for 1,000,000 distinct items.",
+      "kind": "derived",
+      "evidenceIds": [],
+      "assumptions": [
+        "No duplicate exists, so the algorithm runs to completion.",
+        "Model one set membership test and one set insertion for each item."
+      ],
+      "limitations": [
+        "Counts abstract operations; operations have unequal real costs.",
+        "The 200 million operations/s rate is a hypothetical illustration, not a benchmark."
+      ],
+      "check": {
+        "type": "operation-count",
+        "n": 1000000,
+        "growth": "set-scan",
+        "steps": 2000000,
+        "stepsPerSecond": 200000000,
+        "seconds": 0.01
+      }
+    },
+    {
+      "id": "billion-pairs",
+      "text": "At a hypothetical 200 million comparisons/s, 1,000,000,000 distinct items take about 79 years by pairwise comparison.",
+      "kind": "derived",
+      "evidenceIds": [],
+      "assumptions": [
+        "No duplicate exists, so the algorithm runs to completion.",
+        "Each unordered pair is compared once."
+      ],
+      "limitations": [
+        "Counts abstract operations; operations have unequal real costs.",
+        "The 200 million operations/s rate is a hypothetical illustration, not a benchmark."
+      ],
+      "check": {
+        "type": "operation-count",
+        "n": 1000000000,
+        "growth": "pairs",
+        "stepsApprox": 4.999999995e+17,
+        "stepsPerSecond": 200000000,
+        "years": 79.22021945585216
+      }
+    },
+    {
+      "id": "billion-set",
+      "text": "At the same hypothetical rate, a set scan models 10 seconds for 1,000,000,000 distinct items.",
+      "kind": "derived",
+      "evidenceIds": [],
+      "assumptions": [
+        "No duplicate exists, so the algorithm runs to completion.",
+        "Model one set membership test and one set insertion for each item."
+      ],
+      "limitations": [
+        "Counts abstract operations; operations have unequal real costs.",
+        "The 200 million operations/s rate is a hypothetical illustration, not a benchmark."
+      ],
+      "check": {
+        "type": "operation-count",
+        "n": 1000000000,
+        "growth": "set-scan",
+        "steps": 2000000000,
+        "stepsPerSecond": 200000000,
+        "seconds": 10.0
+      }
+    },
+    {
+      "id": "set-lookup",
+      "text": "Python set membership is O(1) on average and O(n) in the worst case; set insertion is typically O(1) amortized under suitable hashing.",
+      "kind": "sourced",
+      "evidenceIds": [
+        "python-set-membership",
+        "python-dict-insertion",
+        "python-set-implementation"
+      ],
+      "assumptions": [
+        "Hashes distribute values well enough that collisions are uncommon.",
+        "Set insertion has similar average behavior to dict insertion, as the wiki describes their implementations as similar."
+      ],
+      "limitations": [
+        "Worst-case set membership is O(n); a set uses extra memory and actual insertion and membership costs differ from pair comparisons."
+      ]
+    }
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "start": 0,
+      "duration": 10,
+      "narration": "A thousand items. Check every pair for duplicates: nearly half a million comparisons. Or scan with a set: two thousand lookups and insertions.",
+      "onScreen": "No duplicates: 499,500 pairs vs 2,000 set operations",
+      "visual": {
+        "template": "code-loops",
+        "parameters": {
+          "jobs": 1000
+        }
+      },
+      "claimIds": [
+        "thousand-pairs",
+        "thousand-set"
+      ]
+    },
+    {
+      "id": "grow",
+      "start": 10,
+      "duration": 9,
+      "narration": "Ten times the items. Pair checks grow about a hundredfold. The set scan grows tenfold.",
+      "onScreen": "10,000 items: 49,995,000 pairs vs 20,000 set operations",
+      "visual": {
+        "template": "growth-table",
+        "parameters": {
+          "jobs": 10000
+        }
+      },
+      "claimIds": [
+        "ten-thousand-pairs",
+        "ten-thousand-set"
+      ]
+    },
+    {
+      "id": "reveal",
+      "start": 19,
+      "duration": 10,
+      "narration": "That growth is time complexity. Pair checks grow like n squared; a set scan grows like n, on average.",
+      "onScreen": "Time complexity: O(n²) pairs vs average O(n) set scan",
+      "visual": {
+        "template": "code-big-o",
+        "parameters": {
+          "curves": "n,n-squared"
+        }
+      },
+      "claimIds": [
+        "big-o-name",
+        "set-lookup"
+      ]
+    },
+    {
+      "id": "years",
+      "start": 29,
+      "duration": 14,
+      "narration": "Imagine two hundred million abstract operations per second, equally fast. With no duplicates, one million items: about forty-two minutes versus ten milliseconds. One billion: about seventy-nine years versus ten seconds.",
+      "onScreen": "Illustrative model: 1 billion distinct items, ~79 years vs 10 seconds",
+      "visual": {
+        "template": "time-table",
+        "parameters": {
+          "stepsPerSecond": 200000000
+        }
+      },
+      "claimIds": [
+        "million-pairs",
+        "million-set",
+        "billion-pairs",
+        "billion-set"
+      ]
+    },
+    {
+      "id": "fix",
+      "start": 43,
+      "duration": 13,
+      "narration": "Same task: prove there are no duplicates. The nested loop compares every distinct pair. The set checks and stores each item once. Hash lookups are constant time on average, not guaranteed.",
+      "onScreen": "No duplicates: n(n-1)/2 comparisons vs 2n set operations",
+      "visual": {
+        "template": "code-fix",
+        "parameters": {
+          "task": "duplicates"
+        }
+      },
+      "claimIds": [
+        "set-lookup",
+        "billion-pairs",
+        "billion-set"
+      ]
+    },
+    {
+      "id": "close",
+      "start": 56,
+      "duration": 8,
+      "narration": "Same answer. In this hypothetical model, seventy-nine years becomes ten seconds. Which method would you choose?",
+      "onScreen": "Illustrative model: ~79 years → 10 seconds",
+      "visual": {
+        "template": "code-close",
+        "parameters": {}
+      },
+      "claimIds": [
+        "billion-pairs",
+        "billion-set"
+      ]
+    }
+  ]
+}

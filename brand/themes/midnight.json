@@ -1,0 +1,15 @@
+{
+  "_comment": "Dark theme. Select it with \"theme\": \"midnight\" in brand/brand.json. Override single colours under \"colors\".",
+  "colors": {
+    "background": "#101114",
+    "surface": "#17181C",
+    "surfaceRaised": "#22242A",
+    "border": "#2C2F36",
+    "textPrimary": "#F2F2F0",
+    "textStrong": "#D8D8D4",
+    "textSecondary": "#B8B8B2",
+    "textTertiary": "#9E9E98",
+    "textMuted": "#76766F",
+    "accent": "#FFB547"
+  }
+}

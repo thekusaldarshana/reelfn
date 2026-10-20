@@ -1,0 +1,73 @@
+name: CI
+
+# Manual for now: run it from the Actions tab ("Run workflow"). When GitHub Actions is available
+# for this repository, add `push: { branches: [main] }` and `pull_request:` to run it automatically.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Checks (${{ matrix.os }}, Node ${{ matrix.node }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+
+  render:
+    # The real promise: a fresh clone renders a full video on every OS with no API key.
+    name: Render an example (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: System packages (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg libcairo2-dev libpango1.0-dev pkg-config
+      - name: System packages (macOS)
+        if: runner.os == 'macOS'
+        run: brew install ffmpeg pkg-config cairo pango
+      - name: System packages (Windows)
+        if: runner.os == 'Windows'
+        run: choco install ffmpeg -y --no-progress
+      - run: npm ci
+      - name: Setup
+        run: npm run setup
+        env:
+          REELFN_SYSTEM_PYTHON: ${{ env.pythonLocation }}${{ runner.os == 'Windows' && '\python.exe' || '/bin/python' }}
+      - name: Build an example with the placeholder voice
+        run: npm run reel -- build time-complexity-loops --voice placeholder
+      - run: npm run reel -- frames time-complexity-loops
+      - uses: actions/upload-artifact@v7
+        with:
+          name: example-${{ matrix.os }}
+          path: |
+            output/time-complexity-loops/time-complexity-loops.mp4
+            output/time-complexity-loops/review/sheet.png
+          retention-days: 7

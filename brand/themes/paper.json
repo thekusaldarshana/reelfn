@@ -1,0 +1,15 @@
+{
+  "_comment": "Light theme. Select it with \"theme\": \"paper\" in brand/brand.json. Override single colours under \"colors\".",
+  "colors": {
+    "background": "#F7F5F0",
+    "surface": "#EFECE5",
+    "surfaceRaised": "#E5E1D8",
+    "border": "#D3CEC3",
+    "textPrimary": "#16161A",
+    "textStrong": "#2A2A30",
+    "textSecondary": "#4A4A52",
+    "textTertiary": "#66666E",
+    "textMuted": "#8E8E95",
+    "accent": "#C2410C"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 2,
+  "slug": "__SLUG__",
+  "language": "en",
+  "audience": "TODO: who is this for? e.g. Curious general viewers, including interested teens",
+  "subject": "TODO: e.g. physics",
+  "question": "TODO: the one question this reel answers",
+  "payoff": "TODO: the answer, in one or two exact sentences",
+  "conceptReveal": {
+    "name": "TODO: the concept's name, revealed in beat 3 or later",
+    "beatId": "reveal"
+  },
+  "brandVersion": "1",
+  "templateVersion": "1",
+  "durationSeconds": 42,
+  "evidence": [
+    {
+      "id": "source-1",
+      "title": "TODO: page title",
+      "publisher": "TODO: publisher",
+      "url": "https://example.org/TODO",
+      "accessedAt": "2026-01-01",
+      "locator": "TODO: section or paragraph",
+      "passage": "TODO: a passage copied word for word from the source"
+    }
+  ],
+  "claims": [
+    {
+      "id": "main-claim",
+      "text": "TODO: a claim the video makes, backed by the source above",
+      "kind": "sourced",
+      "evidenceIds": ["source-1"],
+      "assumptions": [],
+      "limitations": ["TODO: what this claim does not say"]
+    }
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "start": 0,
+      "duration": 14,
+      "narration": "TODO: open inside a situation the viewer can picture.",
+      "onScreen": "TODO: what the first frame shows",
+      "visual": { "template": "custom", "parameters": {} },
+      "claimIds": []
+    },
+    {
+      "id": "mechanism",
+      "start": 14,
+      "duration": 14,
+      "narration": "TODO: show how it works, one step at a time.",
+      "onScreen": "TODO: the moving part of the explanation",
+      "visual": { "template": "custom", "parameters": {} },
+      "claimIds": ["main-claim"]
+    },
+    {
+      "id": "reveal",
+      "start": 28,
+      "duration": 14,
+      "narration": "TODO: name the concept here, then end on a question.",
+      "onScreen": "TODO: the concept's name, on screen",
+      "visual": { "template": "custom", "parameters": {} },
+      "claimIds": []
+    }
+  ]
+}

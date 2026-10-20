@@ -1,0 +1,15 @@
+{
+  "_comment": "Deep-blue dark theme. Select it with \"theme\": \"ocean\" in brand/brand.json.",
+  "colors": {
+    "background": "#0B1320",
+    "surface": "#111C2E",
+    "surfaceRaised": "#1A2840",
+    "border": "#243552",
+    "textPrimary": "#EEF4FF",
+    "textStrong": "#D3DEF0",
+    "textSecondary": "#AFC0DA",
+    "textTertiary": "#93A6C3",
+    "textMuted": "#6C7F9C",
+    "accent": "#4FD1C5"
+  }
+}

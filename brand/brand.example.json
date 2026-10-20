@@ -1,0 +1,27 @@
+{
+  "name": "My Channel",
+  "handle": "@mychannel",
+  "hashtag": "#mychannel",
+  "theme": "midnight",
+  "colors": {
+    "accent": "#FFB547"
+  },
+  "watermark": {
+    "image": "brand/assets/watermark.png",
+    "text": "MY CHANNEL"
+  },
+  "endCard": {
+    "image": "brand/assets/logo.png",
+    "text": "MY CHANNEL",
+    "seconds": 2
+  },
+  "voice": {
+    "voice": "Puck",
+    "language": "en-US",
+    "style": "Warm, curious, lightly playful. Brisk but clear. Speak the words precisely without adding anything."
+  },
+  "editorial": {
+    "audience": "Curious general viewers, including interested teens",
+    "tone": "Warm, direct and precise: invite the viewer to predict, then give a satisfying reason."
+  }
+}

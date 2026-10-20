@@ -1,0 +1,33 @@
+# Dependencies and build output
+node_modules/
+dist/
+.venv/
+.venv-*/
+__pycache__/
+*.pyc
+
+# Rendered media and caches (videos, audio, frames); re-creatable with `npm run reel -- build`
+output/
+media/
+.tools/
+.cache/
+
+# Your secrets. Never commit these.
+.env
+.env.*
+!.env.example
+
+# Your personal content. Kept out of git so upstream updates never clash with it and so it is not
+# committed to a pull request by accident. To version your own reels and brand in a fork, delete these lines.
+brand/brand.json
+brand/assets/*
+!brand/assets/.gitkeep
+reels/*
+!reels/README.md
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+*.log
+.vscode/

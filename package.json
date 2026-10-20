@@ -1,0 +1,34 @@
+{
+  "name": "reelfn",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Make narrated, captioned 9:16 explainer videos (Reels, Shorts, TikToks) with your AI coding agent. Every frame is code; every number is checked.",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thekusaldarshana/reelfn.git"
+  },
+  "bugs": "https://github.com/thekusaldarshana/reelfn/issues",
+  "homepage": "https://github.com/thekusaldarshana/reelfn#readme",
+  "keywords": ["reels", "shorts", "tiktok", "manim", "explainer", "video", "ai-agent", "claude-code", "codex", "text-to-speech"],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "setup": "node scripts/reelfn.mjs setup",
+    "doctor": "node scripts/reelfn.mjs doctor",
+    "reel": "node scripts/reelfn.mjs",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "tsc && node --test \"dist/test/*.test.js\" \"test/*.test.mjs\"",
+    "check": "npm run test && node scripts/validate-examples.mjs"
+  },
+  "dependencies": {
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "24.7.0",
+    "typescript": "5.9.3"
+  }
+}

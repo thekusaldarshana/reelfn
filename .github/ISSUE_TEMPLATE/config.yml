@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Questions and showcase
+    url: https://github.com/thekusaldarshana/reelfn/discussions
+    about: Ask how to do something, or share a reel you made.
+  - name: Report a security problem
+    url: https://github.com/thekusaldarshana/reelfn/security/advisories/new
+    about: Please report security issues privately, not as a public issue.

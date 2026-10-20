@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 2,
+  "slug": "time-complexity-45",
+  "language": "en",
+  "audience": "Curious general viewers, including interested teens",
+  "subject": "computer-science",
+  "question": "Why can one search finish in twenty steps while another needs a million?",
+  "payoff": "How the work grows as the data grows matters more than how fast one run feels; that growth is the time complexity.",
+  "conceptReveal": {
+    "name": "time complexity",
+    "beatId": "reveal"
+  },
+  "brandVersion": "1",
+  "templateVersion": "growth-race-1",
+  "durationSeconds": 45,
+  "evidence": [
+    {
+      "id": "python-time-complexity",
+      "title": "TimeComplexity - Python Wiki",
+      "publisher": "Python Software Foundation",
+      "url": "https://wiki.python.org/moin/TimeComplexity",
+      "accessedAt": "2026-10-13",
+      "passage": "This page documents the time-complexity (aka \"Big O\" or \"Big Oh\") of various operations in current CPython. For list membership, \"x in s\" is listed as O(n) for both the average case and the amortized worst case. Internally, a list is represented as an array."
+    },
+    {
+      "id": "python-bisect",
+      "title": "bisect - Array bisection algorithm",
+      "publisher": "Python Software Foundation",
+      "url": "https://docs.python.org/3/library/bisect.html",
+      "accessedAt": "2026-10-13",
+      "passage": "The module is called bisect because it uses a basic bisection algorithm to do its work. This module provides support for maintaining a list in sorted order without having to sort the list after each insertion. Keep in mind that the O(log n) search is dominated by the slow O(n) insertion step."
+    }
+  ],
+  "claims": [
+    {
+      "id": "scan-linear",
+      "text": "Checking an unsorted list item by item can take up to one check per item, so the work grows in step with the list size, written O(n).",
+      "kind": "sourced",
+      "evidenceIds": [
+        "python-time-complexity"
+      ],
+      "assumptions": [
+        "The list is unsorted and has no index, so every item may need checking.",
+        "Each check costs about the same."
+      ],
+      "limitations": [
+        "The target may be found early; O(n) describes the growth of the worst case, not every run."
+      ]
+    },
+    {
+      "id": "twenty-halvings",
+      "text": "A sorted list of one million items can be narrowed to one item with twenty halvings, and nineteen cannot guarantee it.",
+      "kind": "derived",
+      "evidenceIds": [],
+      "assumptions": [
+        "The list is sorted and each step keeps the half that can still contain the target."
+      ],
+      "limitations": [
+        "Sorting the list costs extra work; the saving applies once the data is already sorted."
+      ],
+      "check": {
+        "type": "binary-search-capacity",
+        "universeSize": 1000000,
+        "questions": 20,
+        "strategy": "balanced"
+      }
+    },
+    {
+      "id": "bisect-sorted",
+      "text": "Bisection repeatedly halves a sorted list, and its search step is O(log n).",
+      "kind": "sourced",
+      "evidenceIds": [
+        "python-bisect"
+      ],
+      "assumptions": [
+        "The list is already in sorted order."
+      ],
+      "limitations": [
+        "Inserting into a Python list is still O(n), so the whole insert-and-search operation is dominated by insertion."
+      ]
+    },
+    {
+      "id": "double-adds-one",
+      "text": "Doubling a million items to two million adds only one more halving: twenty becomes twenty-one.",
+      "kind": "derived",
+      "evidenceIds": [],
+      "assumptions": [
+        "The larger list is sorted and each step halves what remains."
+      ],
+      "limitations": [
+        "Counts steps, not seconds; real time also depends on hardware and memory."
+      ],
+      "check": {
+        "type": "binary-search-capacity",
+        "universeSize": 2000000,
+        "questions": 21,
+        "strategy": "balanced"
+      }
+    },
+    {
+      "id": "double-again",
+      "text": "Doubling again, to four million items, adds one more halving: twenty-two in all.",
+      "kind": "derived",
+      "evidenceIds": [],
+      "assumptions": [
+        "The larger list is sorted and each step halves what remains."
+      ],
+      "limitations": [
+        "Counts steps, not seconds; real time also depends on hardware and memory."
+      ],
+      "check": {
+        "type": "binary-search-capacity",
+        "universeSize": 4000000,
+        "questions": 22,
+        "strategy": "balanced"
+      }
+    },
+    {
+      "id": "billion-thirty",
+      "text": "A sorted list of one billion items can be narrowed to one item with thirty halvings.",
+      "kind": "derived",
+      "evidenceIds": [],
+      "assumptions": [
+        "The list is sorted and each step keeps the half that can still contain the target."
+      ],
+      "limitations": [
+        "Counts steps, not seconds; real time also depends on hardware and memory."
+      ],
+      "check": {
+        "type": "binary-search-capacity",
+        "universeSize": 1000000000,
+        "questions": 30,
+        "strategy": "balanced"
+      }
+    },
+    {
+      "id": "big-o-name",
+      "text": "Big O notation describes how an operation's cost grows with input size.",
+      "kind": "sourced",
+      "evidenceIds": [
+        "python-time-complexity"
+      ],
+      "assumptions": [
+        "Cost is counted in basic steps, not seconds."
+      ],
+      "limitations": [
+        "Big O hides constant factors, so a lower-growth method can lose on very small inputs."
+      ]
+    }
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "start": 0,
+      "duration": 5.5,
+      "narration": "A million names on your phone. Two ways to find one. Who wins?",
+      "onScreen": "1,000,000 contacts. Two searchers.",
+      "visual": {
+        "template": "growth-race-field",
+        "parameters": {
+          "items": 1000000
+        }
+      },
+      "claimIds": []
+    },
+    {
+      "id": "race",
+      "start": 5.5,
+      "duration": 11.5,
+      "narration": "One checks every name, top to bottom. Up to a million checks. The other splits a sorted list, keeping half each time. Twenty checks.",
+      "onScreen": "Scan: up to 1,000,000 checks. Split: 20.",
+      "visual": {
+        "template": "growth-race-bars",
+        "parameters": {
+          "scan": 1000000,
+          "split": 20
+        }
+      },
+      "claimIds": [
+        "scan-linear",
+        "twenty-halvings"
+      ]
+    },
+    {
+      "id": "doubling",
+      "start": 17,
+      "duration": 11,
+      "narration": "Now double the names. The scan's work doubles. The splitter adds just one check. Double it again, and the splitter adds one more.",
+      "onScreen": "Double the names: scan doubles, split +1.",
+      "visual": {
+        "template": "growth-doubling",
+        "parameters": {
+          "from": 1000000,
+          "to": 2000000
+        }
+      },
+      "claimIds": [
+        "double-adds-one",
+        "double-again"
+      ]
+    },
+    {
+      "id": "scale",
+      "start": 28,
+      "duration": 6,
+      "narration": "A billion names? The scan: a billion checks. The split: thirty.",
+      "onScreen": "1,000,000,000 names: scan 1,000,000,000, split 30.",
+      "visual": {
+        "template": "growth-billion",
+        "parameters": {
+          "names": 1000000000,
+          "split": 30
+        }
+      },
+      "claimIds": [
+        "billion-thirty"
+      ]
+    },
+    {
+      "id": "reveal",
+      "start": 34,
+      "duration": 11,
+      "narration": "That growth is time complexity. The scan is big O of n. The split is big O of log n. Which would you rather scale?",
+      "onScreen": "Time complexity: O(n) vs O(log n)",
+      "visual": {
+        "template": "growth-curves",
+        "parameters": {
+          "curves": "n,log-n"
+        }
+      },
+      "claimIds": [
+        "bisect-sorted",
+        "big-o-name"
+      ]
+    }
+  ]
+}

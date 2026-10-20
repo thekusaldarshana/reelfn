@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="300" viewBox="0 0 1280 300" role="img" aria-label="reelfn: your reel, as a function of an idea">
+  <rect width="1280" height="300" rx="20" fill="#F7F5F0"/>
+  <text x="72" y="150" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="96" font-weight="700" letter-spacing="-3" fill="#16161A">reel<tspan fill="#C2410C">fn</tspan></text>
+  <text x="76" y="200" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="26" fill="#66666E">reel = f(<tspan fill="#16161A">idea</tspan>)</text>
+  <text x="76" y="244" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" fill="#66666E">Narrated · captioned · on-brand · fact-checked</text>
+  <path d="M700 150 h110" stroke="#D3CEC3" stroke-width="3" stroke-dasharray="6 8"/>
+  <path d="M800 140 l14 10 l-14 10" fill="none" stroke="#C2410C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(860,50)">
+    <rect width="120" height="213" rx="14" fill="#EFECE5" stroke="#D3CEC3" stroke-width="2"/>
+    <rect x="14" y="28" width="70" height="8" rx="4" fill="#16161A" opacity="0.9"/>
+    <rect x="14" y="48" width="92" height="44" rx="6" fill="#F7F5F0" stroke="#D3CEC3"/>
+    <rect x="22" y="58" width="50" height="5" rx="2.5" fill="#66666E"/>
+    <rect x="22" y="70" width="64" height="5" rx="2.5" fill="#66666E"/>
+    <rect x="22" y="82" width="38" height="5" rx="2.5" fill="#C2410C"/>
+    <rect x="14" y="110" width="30" height="10" rx="5" fill="#C2410C"/>
+    <rect x="14" y="128" width="80" height="10" rx="5" fill="#66666E" opacity="0.6"/>
+    <rect x="30" y="182" width="60" height="6" rx="3" fill="#16161A" opacity="0.75"/>
+    <circle cx="104" cy="14" r="4" fill="#66666E"/>
+  </g>
+  <g transform="translate(990,34)">
+    <rect width="120" height="213" rx="14" fill="#EFECE5" stroke="#D3CEC3" stroke-width="2"/>
+    <rect x="14" y="28" width="70" height="8" rx="4" fill="#16161A" opacity="0.9"/>
+    <rect x="14" y="48" width="92" height="44" rx="6" fill="#F7F5F0" stroke="#D3CEC3"/>
+    <rect x="22" y="58" width="50" height="5" rx="2.5" fill="#66666E"/>
+    <rect x="22" y="70" width="64" height="5" rx="2.5" fill="#66666E"/>
+    <rect x="22" y="82" width="38" height="5" rx="2.5" fill="#0F766E"/>
+    <rect x="14" y="110" width="52" height="10" rx="5" fill="#0F766E"/>
+    <rect x="14" y="128" width="62" height="10" rx="5" fill="#66666E" opacity="0.6"/>
+    <rect x="30" y="182" width="60" height="6" rx="3" fill="#16161A" opacity="0.75"/>
+    <circle cx="104" cy="14" r="4" fill="#66666E"/>
+  </g>
+  <g transform="translate(1120,50)">
+    <rect width="120" height="213" rx="14" fill="#EFECE5" stroke="#D3CEC3" stroke-width="2"/>
+    <rect x="14" y="28" width="70" height="8" rx="4" fill="#16161A" opacity="0.9"/>
+    <rect x="14" y="48" width="92" height="44" rx="6" fill="#F7F5F0" stroke="#D3CEC3"/>
+    <rect x="22" y="58" width="50" height="5" rx="2.5" fill="#66666E"/>
+    <rect x="22" y="70" width="64" height="5" rx="2.5" fill="#66666E"/>
+    <rect x="22" y="82" width="38" height="5" rx="2.5" fill="#C2410C"/>
+    <rect x="14" y="110" width="74" height="10" rx="5" fill="#C2410C"/>
+    <rect x="14" y="128" width="44" height="10" rx="5" fill="#66666E" opacity="0.6"/>
+    <rect x="30" y="182" width="60" height="6" rx="3" fill="#16161A" opacity="0.75"/>
+    <circle cx="104" cy="14" r="4" fill="#66666E"/>
+  </g>
+</svg>

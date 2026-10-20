@@ -9,7 +9,7 @@
 ### Your reel, as a function of an idea.
 
 Ask your AI agent for a video. Get a narrated, captioned, on-brand **Reel**, **Short** or **TikTok**,<br>
-made with code instead of a video model, so every frame is reproducible and every number is checked.
+made with code instead of a video model, with editable scenes and deterministic checks for the numbers recorded in each episode.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-2ea44f?style=flat-square)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.1.0-FFB547?style=flat-square)](CHANGELOG.md)
@@ -59,7 +59,7 @@ Nothing is ever posted for you. You approve the script and the final video.
 | 🗣️ **Voice first** | Narration is generated and measured first, so animation lands exactly on the spoken words. |
 | 🧑‍🤝‍🧑 **Made for non-coders** | Talk to an AI agent in plain words; it runs every command and explains every fix. |
 | 💻 **Any computer** | Windows, macOS and Linux on a modest laptop. No GPU, no cloud render farm. |
-| 💸 **Free to run** | MIT-licensed. The narrator uses Gemini's free tier, an offline voice, or a silent preview. |
+| 💸 **Voice options** | MIT-licensed code, with Gemini narration, an optional offline voice, or a silent preview. Provider pricing and quotas apply. |
 
 <div align="center">
 <img src="docs/assets/themes.png" alt="The same frame in three built-in themes: midnight (dark), paper (light) and ocean (deep blue)" width="720">
@@ -145,18 +145,18 @@ reelfn ships instructions for these agents, so they know the whole workflow:
 | [**Gemini CLI**](https://github.com/google-gemini/gemini-cli) | Run `gemini` in the folder. |
 | Any other agent | Point it at [`AGENTS.md`](AGENTS.md). |
 
-The first time, the agent asks for your channel name, look, logo and voice. It also helps you add a **free Gemini API
+The first time, the agent asks for your channel name, look, logo and voice. It also helps you add a **Gemini API
 key** for the narrator: get one at [aistudio.google.com/apikey](https://aistudio.google.com/apikey) and paste it into
 the `.env` file in the reelfn folder.
 
 > [!IMPORTANT]
-> Never paste API keys into a chat. Keys belong only in your local `.env` file, which is never uploaded.
+> Never paste API keys into a chat. Keys belong in your local `.env` file, which is git-ignored. Keep that file out of uploads, archives, and commits.
 
 <a id="make-it-yours"></a>
 
 ## 🎨 Make it yours
 
-Everything personal lives in `brand/` and stays on your computer (it is git-ignored).
+Your personal brand file and assets live in `brand/` and are git-ignored. Keep them out of commits and shared archives.
 
 ```bash
 npm run reel -- brand init   # creates brand/brand.json from an example
@@ -210,7 +210,7 @@ the full production method. It is written for agents, but people can follow it t
 
 | Voice | Good for | Needs |
 | :-- | :-- | :-- |
-| `gemini` (default) | Natural, expressive narration in many languages | A free Gemini API key (about 10 voice requests a day on the free tier) |
+| `gemini` (default) | Natural, expressive narration in many languages | A Gemini API key with access to the configured TTS model; provider pricing and quotas apply |
 | `kokoro` | Fully offline narration (experimental) | `npm run setup -- --local-voice` and a model download; see [MODELS.md](renderer/audio/MODELS.md) |
 | `placeholder` | Trying things out, timing drafts | Nothing: it is silent |
 
@@ -228,8 +228,7 @@ idea ─▶ research ─▶ episode.json ──validate──▶ voice ─▶ mi
 ```
 
 Animation is [Manim](https://www.manim.community/), the engine behind many maths explainers. Assembly is
-[FFmpeg](https://ffmpeg.org/). Music and sound cues are generated in code, so there are no samples to license. Every
-build writes a manifest of SHA-256 hashes, so you always know exactly which script and settings made a video.
+[FFmpeg](https://ffmpeg.org/). Music and sound cues are generated in code, so there are no samples to license. Assembly writes a manifest of SHA-256 hashes for the recorded inputs and outputs, so you can trace a build.
 Details: **[docs/how-it-works.md](docs/how-it-works.md)**.
 
 ## 🩺 Troubleshooting
@@ -237,7 +236,7 @@ Details: **[docs/how-it-works.md](docs/how-it-works.md)**.
 | Problem | Fix |
 | :-- | :-- |
 | A line says `FAIL` or "not found" | Run `npm run doctor`. It checks everything and prints the fix for your system. |
-| "Gemini daily free-tier quota is exhausted" | The free key allows roughly 10 voice requests a day. Wait for the reset, keep working with `--voice placeholder`, or use a paid key. Unchanged beats are cached and never re-voiced. |
+| "Gemini daily free-tier quota is exhausted" | Check your account and model quota in Google AI Studio. Wait for a reset, keep working with `--voice placeholder`, or use a paid key. Unchanged beats are cached and never re-voiced. |
 | Text looks wrong or overlaps | Run `npm run reel -- frames <name>`, look at the sheet, and ask your agent to fix the layout. |
 
 More answers: [troubleshooting guide](skills/reelfn/references/troubleshooting.md). Still stuck?

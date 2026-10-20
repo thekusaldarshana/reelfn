@@ -3,6 +3,12 @@
 Everything that makes a video look and sound like *your* channel lives here. Out of the box, reelfn uses a neutral
 dark look with no watermark and no end card. Make it yours in three steps (or ask your AI agent: *"set up my brand"*).
 
+**[Project quick start](../README.md#quick-start)** · **[Create your brand](#1-create-your-brand-file)** · **[Privacy](#privacy)**
+
+Run all `npm` commands below from the **repository root**, after completing
+[setup](../README.md#quick-start). If you are using an AI agent, ask it to make
+these changes for you.
+
 ## 1. Create your brand file
 
 ```bash
@@ -46,8 +52,16 @@ Copy the font file (`.ttf` or `.otf`) somewhere inside the reelfn folder, for ex
 set:
 
 ```json
-"font": { "family": "Your Font Name", "file": "brand/assets/fonts/YourFont-Regular.ttf" }
+{
+  "font": {
+    "family": "Your Font Name",
+    "file": "brand/assets/fonts/YourFont-Regular.ttf"
+  }
+}
 ```
+
+Merge that `font` setting into your existing `brand/brand.json`. Do not replace
+your other brand settings.
 
 Make sure you are allowed to use the font in videos. The bundled fonts (Red Hat Display, JetBrains Mono, Atkinson
 Hyperlegible) are under the SIL Open Font License.
@@ -57,8 +71,22 @@ Hyperlegible) are under the SIL Open Font License.
 Copy `themes/midnight.json` to `themes/<your-theme>.json`, change the colours, and set `"theme": "<your-theme>"`.
 Keep enough contrast between `background` and `textPrimary` for small phone screens.
 
+## How settings combine
+
+Defaults come from [`default.json`](default.json), then your `brand.json`
+overrides them. The selected theme supplies colours; your `colors` values
+override individual theme colours. Missing logo files fall back to your configured
+text or channel name. With neither an image nor a name, the mark is omitted.
+
+Run `npm run reel -- brand` to inspect the resolved settings. To inspect the
+result in a video, build an example with a silent voice and review its frames:
+
+```bash
+npm run reel -- build time-complexity-loops --voice placeholder
+npm run reel -- frames time-complexity-loops
+```
+
 ## Privacy
 
-`brand/brand.json` and `brand/assets/` are ignored by git, so your personal brand is never uploaded by accident
-(for example in a pull request). If you keep your own fork and want them versioned, remove those lines from
+`brand/brand.json` and `brand/assets/` are ignored by git, so ordinary Git staging skips them. Gitignore does not protect files in archives or files force-added to Git. If you keep your own fork and want them versioned, remove those lines from
 `.gitignore`.
